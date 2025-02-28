@@ -1,0 +1,12 @@
+Package:                   an12149-lwip-ptpd
+Version:                   2.0
+Outgoing License:          BSD-3-Clause 
+License File:              LICENSE
+Type of Content:           source code
+Description and comments:  The ptpd project on i.MX RT1020-EVK and i.MX RT1050-EVKB.
+Release Location:          https://github.com/nxp-appcodehub/an-ptpd-synchronization
+Origin:                    NXP (BSD-3-Clause)
+                           ARM CMSIS 5.8.0 (Apache-2.0) - https://github.com/ARM-software/CMSIS_5/releases/tag/5.8.0
+                           Amazon freertos-kernel 10.5.1 (MIT) - https://aws.amazon.com/freertos
+                           Swedish Institute of Computer Science, NXP lwip 2023-01-03 (BSD-3-Clause) -  http://savannah.nongnu.org/projects/lwip 
+                           Ptpd 2.3.1 (BSD-2-Clause) - https://github.com/ptpd/ptpd/releases/tag/ptpd-2.3.1

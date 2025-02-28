@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:manifest xmlns:ns2="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" format_version="3.14" api_version="2.0.0" configuration="9178fb29b864f0969c5a066d1c8e0153" id="SDK_2.x_EVKB-IMXRT1050" name="EVKB-IMXRT1050" brief="This is SDK version 2.15.100 manifest file. It describes the content of the EVKB-IMXRT1050 and additional settings for tools that support SDK version 2.15.100">
+    <ksdk id="MCUXpresso215100" name="MCUXpresso215100" version="2.15.100" revision="831 2024-04-26"/>
+    <compilers>
+        <compiler type="gcc" id="compiler_gcc" name="gcc"/>
+    </compilers>
+    <toolchainSettings>
+        <toolchainSetting id="com.nxp.mcuxpresso" name="mcuxpresso" full_name="MCUXpresso IDE" version="11.8.0" toolchain="mcuxpresso" compiler="compiler_gcc">
+            <option id="gnu.cpp.compiler.option.optimization.flags" type="string" user_name="">
+                <value>-fno-common</value>
+            </option>
+            <option id="gnu.c.compiler.option.optimization.flags" type="string" user_name="">
+                <value>-fno-common</value>
+            </option>
+            <option id="gnu.cpp.link.option.nostdlibs" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+            <option id="com.crt.advproject.link.cpp.flashconfigenable" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+            <option id="com.crt.advproject.link.flashconfigenable" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+            <option id="gnu.c.link.option.nostdlibs" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+        </toolchainSetting>
+    </toolchainSettings>
+    <toolchains>
+        <toolchain type="mcuxpresso" vendor="NXP Semiconductors" vendor_url="http://www.nxp.com" id="mcuxpresso" name="MCUXpresso_IDE" full_name="MCUXpresso IDE" version="11.8.0" compiler="compiler_gcc">
+            <debug>
+                <debug_configuration probe="LinkServer" id="com.crt.advproject.config.exe.release" name="Release Configuration">
+                    <scripts>
+                        <script type="init" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>
+set remotetimeout 60000
+##target_extended_remote##
+set mem inaccessible-by-default ${mem.access}
+mon ondisconnect ${ondisconnect}
+set arm force-mode thumb
+${load}</script>
+                        </script>
+                        <script type="run" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>${run}</script>
+                        </script>
+                    </scripts>
+                    <params>
+                        <params value="false" id="vector.catch.release.mcuxpresso" name="vector.catch"/>
+                        <params value="Disable" id="internal.cache.release.mcuxpresso" name="internal.cache"/>
+                    </params>
+                </debug_configuration>
+                <debug_configuration probe="LinkServer" id="com.crt.advproject.config.exe.debug" name="Debug Configuration">
+                    <scripts>
+                        <script type="init" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>
+set remotetimeout 60000
+##target_extended_remote##
+set mem inaccessible-by-default ${mem.access}
+mon ondisconnect ${ondisconnect}
+set arm force-mode thumb
+${load}</script>
+                        </script>
+                        <script type="run" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>${run}</script>
+                        </script>
+                    </scripts>
+                    <params>
+                        <params value="false" id="vector.catch.debug.mcuxpresso" name="vector.catch"/>
+                        <params value="Disable" id="internal.cache.debug.mcuxpresso" name="internal.cache"/>
+                    </params>
+                </debug_configuration>
+                <debug_configuration probe="Segger" id="com.nxp.mcuxpresso.core.debug.support.segger.debug" name="Debug Configuration"/>
+                <debug_configuration probe="Segger" id="com.nxp.mcuxpresso.core.debug.support.segger.release" name="Release Configuration"/>
+            </debug>
+        </toolchain>
+    </toolchains>
+    <boards>
+        <board package="MIMXRT1052DVL6B" id="evkbimxrt1050" name="EVKB-IMXRT1050" href="https://www.nxp.com/pip/MIMXRT1050-EVK" version="1.0.0">
+            <description>i.MX RT1050 Evaluation Kit</description>
+            <image path="boards/evkbimxrt1050" type="image">
+                <files mask="evkbimxrt1050.png"/>
+            </image>
+            <memory>
+                <memoryBlock addr="60000000" size="04000000" type="ExtFlash" access="RO" id="BOARD_FLASH_evkbimxrt1050" name="BOARD_FLASH"/>
+                <memoryBlock addr="80000000" size="01E00000" type="RAM" access="RW" id="BOARD_SDRAM_evkbimxrt1050" name="BOARD_SDRAM"/>
+                <memoryBlock addr="81E00000" size="00200000" type="RAM" access="RW" id="NCACHE_REGION_evkbimxrt1050" name="NCACHE_REGION"/>
+            </memory>
+            <total_memory flash_size_kb="65536" ram_size_kb="32768"/>
+            <debug_configurations>
+                <debug_configuration id_refs="com.crt.advproject.config.exe.debug com.crt.advproject.config.exe.release">
+                    <drivers>
+                        <driver id_refs="BOARD_FLASH_evkbimxrt1050">
+                            <driverBinary path="devices/MIMXRT1052/mcuxpresso" type="binary">
+<files mask="MIMXRT1050_SFDP_HYPERFLASH.cfx"/>
+                            </driverBinary>
+                        </driver>
+                    </drivers>
+                </debug_configuration>
+            </debug_configurations>
+        </board>
+        <board package="MIMXRT1052DVL6B" type="kit" id="evkbimxrt1050_om13790host" name="EVKB-IMXRT1050-OM13790HOST" href="https://www.nxp.com/pip/OM13790" version="1.0.0">
+            <description>i.MX RT1050 Evaluation Kit with Multi Sensor Development Shield Board (with bluetooth &amp; SD card slot) for MMA8652 3-axis accelerometer, FXAS21002C 3-axis gyroscope, FXOS8700C 6-axis integrated e-compass, MAG3110 3-axis magnetometer, FXLS8471 3-axis SPI accelerometer, MMA9553</description>
+            <image path="boards/evkbimxrt1050_om13790host" type="image">
+                <files mask="evkbimxrt1050_om13790host.png"/>
+            </image>
+            <memory>
+                <memoryBlock addr="60000000" size="04000000" type="ExtFlash" access="RO" id="BOARD_FLASH_evkbimxrt1050_om13790host" name="BOARD_FLASH"/>
+                <memoryBlock addr="80000000" size="01E00000" type="RAM" access="RW" id="BOARD_SDRAM_evkbimxrt1050_om13790host" name="BOARD_SDRAM"/>
+                <memoryBlock addr="81E00000" size="00200000" type="RAM" access="RW" id="NCACHE_REGION_evkbimxrt1050_om13790host" name="NCACHE_REGION"/>
+            </memory>
+            <total_memory flash_size_kb="65536" ram_size_kb="32768"/>
+            <debug_configurations>
+                <debug_configuration id_refs="com.crt.advproject.config.exe.debug com.crt.advproject.config.exe.release">
+                    <drivers>
+                        <driver id_refs="BOARD_FLASH_evkbimxrt1050_om13790host">
+                            <driverBinary path="devices/MIMXRT1052/mcuxpresso" type="binary">
+<files mask="MIMXRT1050_SFDP_HYPERFLASH.cfx"/>
+                            </driverBinary>
+                        </driver>
+                    </drivers>
+                </debug_configuration>
+            </debug_configurations>
+        </board>
+    </boards>
+    <devices>
+        <device family="MIMXRT1050" platform="i.MX" id="MIMXRT1052xxxxB" name="MIMXRT1052" full_name="MIMXRT1052xxxxB" version="1.0.0">
+            <description>i.MX MIMXRT1052 600MHz, 512KB SRAM Microcontrollers (MCUs) based on ARM Cortex-M7 Core</description>
+            <metadataSet>
+                <metadata key="compatible_device.segger" value="MCIMXRT1052"/>
+                <metadata key="compatible_device.pemicro" value="IMXRT1052"/>
+                <metadata key="vendor" value="NXP"/>
+            </metadataSet>
+            <defines>
+                <define name="CPU_$|package|" value=""/>
+                <define name="CPU_$|package|_$|core|" value=""/>
+            </defines>
+            <core fpu="true" type="cm7" id="core0_MIMXRT1052xxxxB" name="core0"/>
+            <memory>
+                <memoryBlock addr="20000000" size="00020000" type="RAM" access="RW" id="SRAM_DTC_MIMXRT1052xxxxB" name="SRAM_DTC"/>
+                <memoryBlock addr="00000000" size="00020000" type="RAM" access="RW" id="SRAM_ITC_MIMXRT1052xxxxB" name="SRAM_ITC"/>
+                <memoryBlock addr="20200000" size="00040000" type="RAM" access="RW" id="SRAM_OC_MIMXRT1052xxxxB" name="SRAM_OC"/>
+            </memory>
+            <total_memory flash_size_kb="0" ram_size_kb="256"/>
+            <package id="MIMXRT1052DVL6B" name="MIMXRT1052DVL6B"/>
+            <package id="MIMXRT1052CVL5B" name="MIMXRT1052CVL5B"/>
+            <package id="MIMXRT1052CVJ5B" name="MIMXRT1052CVJ5B"/>
+            <package id="MIMXRT1052DVJ6B" name="MIMXRT1052DVJ6B"/>
+            <evaluation_boards>
+                <evaluation_board name="evkbimxrt1050"/>
+            </evaluation_boards>
+            <debug_configurations>
+                <debug_configuration id_refs="com.crt.advproject.config.exe.debug com.crt.advproject.config.exe.release">
+                    <params>
+                        <params value="--no-packed" id="misc.options.MIMXRT1052xxxxB" name="misc.options"/>
+                        <params value="SWD" id="internal.wiretype.release.MIMXRT1052xxxxB" name="internal.wiretype"/>
+                        <params value="false" id="internal.has_swo.release.MIMXRT1052xxxxB" name="internal.has_swo"/>
+                        <params value="RT1050_connect.scp" id="internal.connect.script.debug.mcuxpresso.MIMXRT1052xxxxB" name="internal.connect.script"/>
+                    </params>
+                </debug_configuration>
+            </debug_configurations>
+            <linkerSettings nature="c_nature">
+                <linker property="start_symbol" value="ResetISR"/>
+                <linker property="text_align" value="4"/>
+                <linker property="data_align" value="4"/>
+                <linker property="bss_align" value="4"/>
+                <linker property="mtb_supported" value="false"/>
+            </linkerSettings>
+            <linkerSettings nature="cpp_nature">
+                <linker property="start_symbol" value="ResetISR"/>
+                <linker property="text_align" value="4"/>
+                <linker property="data_align" value="4"/>
+                <linker property="bss_align" value="4"/>
+                <linker property="mtb_supported" value="false"/>
+            </linkerSettings>
+        </device>
+    </devices>
+    <components>
+        <component user_visible="true" type="debugger" package_base_path="devices/MIMXRT1052" project_base_path="svd" category="Board Support/SDK Project Template" id="platform.devices.MIMXRT1052_debugger.MIMXRT1052" name="Device MIMXRT1052_debugger" full_name="Device MIMXRT1052_debugger" brief="Device MIMXRT1052_debugger" version="1.0.0">
+            <dependencies>
+                <device_dependency value="MIMXRT1052xxxxB"/>
+            </dependencies>
+            <source relative_path="./" type="xml">
+                <files mask="MIMXRT1052.xml"/>
+            </source>
+        </component>
+    </components>
+</ns2:manifest>
